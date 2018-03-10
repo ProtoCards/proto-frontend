@@ -10,7 +10,7 @@ const Print = () => {
   return (
     <div className="print-background">
 
-      <Link to="/print-preview">
+      <Link to="/print-prep">
         <div className="go-back">
           <i class="material-icons mr-05">arrow_back</i>
           <span>back to print preview</span>

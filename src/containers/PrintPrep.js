@@ -6,34 +6,29 @@ import CardPreview from '../components/CardPreview'
 
 const PrintPrep = ({ projectCards }) => {
 
-  //make local state that stores printgroups
-  //have to recalculate every time state changes
-
   const printCards = projectCards.all.filter(el => {
-    console.log(el, "el");
     return el.is_selected === true
   })
 
-  // const printGroups = (printCards) => {
-  //   let result = []
-  //   let triplet = []
-  //
-  //   for(let i = 0; i < printCards.length; i++){
-  //     triplet.push(printCards[i])
-  //     if((i + 1) % 3 === 0){
-  //       result.push(triplet)
-  //       triplet = []
-  //     } else if (i >= printCards.length - 2){
-  //       result.push(triplet)
-  //     } else if (i === printCards.length - 1 && printCards.length){
-  //       result.push(triplet)
-  //     }
-  //   }
-  //
-  //   return result
-  // }
-  //
-  // const triples = printGroups(printCards)
+  const printGroups = (printCards) => {
+    let result = []
+    let nine = []
+
+    let remainder = printCards.slice(printCards.length - (printCards.length % 9))
+
+    for(let i = 0; i < printCards.length; i++){
+      nine.push(printCards[i])
+      if((i + 1) % 9 === 0){
+        result.push(nine)
+        nine = []
+      }
+    }
+
+    if(remainder.length) result.push(remainder)
+    return result
+  }
+
+  const cardsByNine = printGroups(printCards)
 
   return (
     <div className="print-preview">
@@ -45,37 +40,13 @@ const PrintPrep = ({ projectCards }) => {
         </button>
       </Link>
 
-      <div className="print-preview-page" id="printarea">
-        {printCards.map((el, i) => {
-          return <CardPreview key={el._id} title={el.properties[0].content} />
-        })}
-
-
-
-        {/* { triples ? triples.map((el, i) => {
-          return <div key={i} className="card-row">
-            {el.map(el => {
-              return <CardPreview key={el._id} title={el.properties[0].content}/>
-            })}
-          </div>
-        }) : ''} */}
-
-        {/* <div className="card-row">
-          <CardPreview />
-          <CardPreview />
-          <CardPreview />
+      { cardsByNine ? cardsByNine.map((el, i) => {
+        return <div key={i} className="print-preview-page" id="printarea">
+          {el.map(el => {
+            return <CardPreview key={el._id} title={el.properties[0].content}/>
+          })}
         </div>
-        <div className="card-row">
-          <CardPreview />
-          <CardPreview />
-          <CardPreview />
-        </div>
-        <div className="card-row">
-          <CardPreview />
-          <CardPreview />
-          <CardPreview />
-        </div> */}
-      </div>
+      }) : ''}
 
     </div>
   )
