@@ -5,7 +5,7 @@ export const SELECT_ALL_CARDS = 'SELECT_ALL_CARDS'
 export const UNSELECT_ALL_CARDS = 'UNSELECT_ALL_CARDS'
 export const DELETE_CARDS = 'DELETE_CARDS'
 
-const baseURL = 'http://localhost:3000/graphql'
+const baseURL = 'http://localhost:3001/graphql'
 
 export function deleteCards(selectedCards){
 

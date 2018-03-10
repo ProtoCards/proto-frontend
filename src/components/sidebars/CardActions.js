@@ -59,7 +59,7 @@ const CardActions = ( { projectCards, selectCard, selectAllCards, unselectAllCar
         <i className="material-icons">delete</i>
         <span>Delete Selected</span>
       </div>
-      <Link to="/print-preview">
+      <Link to="/print-prep">
         <div className="local-action">
           <i className="material-icons">print</i>
           <span>Print Prep</span>

@@ -10,7 +10,7 @@ import EditCenterMain from './containers/EditCenterMain'
 import EditCenterCarousel from './containers/EditCenterCarousel'
 import AddCardModal from './components/modals/AddCardModal'
 import DeleteCardsModal from './components/modals/DeleteCardsModal'
-import PrintPreview from './containers/PrintPreview.js'
+import PrintPrep from './containers/PrintPrep.js'
 import PrintSidebar from './containers/PrintSidebar'
 import NewProjectScreen from './containers/NewProjectScreen';
 import AssignFields from './components/newproject/AssignFields';
@@ -40,12 +40,12 @@ const App = () => (
         </div>
       }/>
 
-      <Route exact path='/print-preview' component={ props =>
+      <Route exact path='/print-prep' component={ props =>
         <div className="print-route">
           <NavBar />
           <div className="print-preview-container">
             <PrintSidebar />
-            <PrintPreview />
+            <PrintPrep />
           </div>
         </div>
       }/>
