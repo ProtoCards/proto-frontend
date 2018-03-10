@@ -15,13 +15,13 @@ read.then((data) => {
 
 const parser = (data) => {
   parse(data, {columns: true}, (err, output) => {
-    console.log(output)
-    output.map(card => {
-      card.tiiiiitle = card.Title
-      delete card.Title
-      return card.tiiiiitle
-    })
-    console.log(output)
+    // console.log(output)
+    // output.map(card => {
+    //   card['tiiiiitle'] = card['Title']
+    //   delete card['Title']
+    //   return card['tiiiiitle']
+    // })
+    cardify(output)
   })
 }
 
@@ -37,6 +37,9 @@ const cardify = (data) => {
       if (prop.toLowerCase() === "title") {
         parsedCard.workingTitle = card[prop]
         parsedCard.properties.push({name: prop, fieldId: null, content: card[prop]})
+      } else if (prop.toLowerCase() === "type") {
+        parsedCard.cardType = card[prop]
+        parsedCard.properties.push({name: "Type", fieldId: null, content: card[prop]})
       } else if (prop.toLowerCase() === "quantity") {
         parsedCard.printQuantity = parseInt(card[prop])
       } else if (card[prop] === "") {
@@ -46,32 +49,4 @@ const cardify = (data) => {
     }
     console.log(parsedCard)
   })
-
 }
-// { Title: 'Cats for Days',
-//     Quantity: '10',
-//     Health: '5',
-//     Cost: '8',
-//     'Sandwich Flavor': 'Ham',
-//     Fruit: 'Banana',
-//     Color: 'Blue' },
-//
-// {
-//     "_id": {
-//         "$oid": "5a8e157bd50b46232fd14ce0"
-//     },
-//     "projectId": "5a861f6ef36d2873fccf8312",
-//     "quantity": 4,
-//     "properties": [
-//         {
-//             "name": "Fish",
-//             "fieldId": "H",
-//             "content": "Fish"
-//         },
-//         {
-//             "name": "Ham",
-//             "fieldId": "A",
-//             "content": "Tomato"
-//         }
-//     ]
-// }

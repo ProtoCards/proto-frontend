@@ -1,5 +1,5 @@
-Title,Quantity,Health,Cost,Sandwich Flavor,Fruit,Color
-Cats for Days,10,5,8,Ham,Banana,Blue
-Martians,2,4,8,Cheese,Apple,Green
-Potato,4,3,3,French Fry,Potato,Green
-Ham,4,4,,Ham and Spam,Mango,Yellow
+Title,Quantity,Health,Cost,Sandwich Flavor,Fruit,Color,Type
+Cats for Days,10,5,8,Ham,Banana,Blue,DOOM
+Martians,2,4,8,Cheese,Apple,Green,DOOM
+Potato,4,3,3,French Fry,Potato,Green,Fish
+Ham,4,4,,Ham and Spam,Mango,Yellow,Hammy
