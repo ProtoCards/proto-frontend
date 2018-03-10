@@ -6,13 +6,9 @@ import CardPreview from '../components/CardPreview'
 
 const PrintPrep = ({ projectCards }) => {
 
-  //make local state that stores printgroups
-  //have to recalculate every time state changes
-
   const printCards = projectCards.all.filter(el => {
     return el.is_selected === true
   })
-  console.log(printCards, "printCards");
 
   const printGroups = (printCards) => {
     let result = []
@@ -31,7 +27,6 @@ const PrintPrep = ({ projectCards }) => {
     if(remainder.length) result.push(remainder)
     return result
   }
-  console.log("printGroups", printGroups(printCards))
 
   const cardsByNine = printGroups(printCards)
 
@@ -52,7 +47,6 @@ const PrintPrep = ({ projectCards }) => {
           })}
         </div>
       }) : ''}
-
 
     </div>
   )
