@@ -12,7 +12,7 @@ const PrintSidebar = () => {
     <div className="edit-left-sidebar-container">
       <Link to="/">
         <div className="go-back">
-          <i class="material-icons mr-05">arrow_back</i>
+          <i className="material-icons mr-05">arrow_back</i>
           <span>back to edit view</span>
         </div>
       </Link>
