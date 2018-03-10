@@ -1,49 +1,53 @@
 const parse = require('csv-parse')
 const fs = require('fs');
 
-class CSVParser {
-  const parse = (filepath, projectId) => {
-    return fs.readFile(filepath, 'utf8', (err, data) => {
-        if (err) throw err;
-        parser(data, projectId)
-    });
-  }
+const read = new Promise((resolve, reject) => {
+  fs.readFile('./cards.csv', 'utf8', (err, data) => {
+    if (err) throw err;
+    resolve(data)
+  })
+})
 
-  const parser = (data, projectId) => {
-    parse(data, {columns: true}, (err, output) => {
-      cardify(output, projectId)
+read.then((data) => {
+  parser(data)
+})
+
+
+const parser = (data) => {
+  parse(data, {columns: true}, (err, output) => {
+    console.log(output)
+    output.map(card => {
+      card.tiiiiitle = card.Title
+      delete card.Title
+      return card.tiiiiitle
     })
-  }
-
-  const cardify = (data, projectId) => {
-    data.forEach(card => {
-      let parsedCard = {
-        projectId: projectId,
-        workingTitle: null,
-        quantity: 1,
-        properties: []
-      }
-      for (const prop in card) {
-        console.log(prop)
-        console.log(card[prop])
-        if (prop.toLowerCase() === "title") {
-          parsedCard.workingTitle = card[prop]
-          parsedCard.properties.push({name: prop, fieldId: null, content: card[prop]})
-        } else if (prop.toLowerCase() === "quantity") {
-          parsedCard.quantity = parseInt(card[prop])
-        } else {
-          parsedCard.properties.push({name: prop, fieldId: null, content: card[prop]})
-        }
-      }
-      console.log(parsedCard)
-    })
-  }
-
+    console.log(output)
+  })
 }
 
-CSV
+const cardify = (data) => {
+  data.forEach(card => {
+    let parsedCard = {
+      workingTitle: null,
+      printQuantity: 1,
+      cardType: null,
+      properties: []
+    }
+    for (const prop in card) {
+      if (prop.toLowerCase() === "title") {
+        parsedCard.workingTitle = card[prop]
+        parsedCard.properties.push({name: prop, fieldId: null, content: card[prop]})
+      } else if (prop.toLowerCase() === "quantity") {
+        parsedCard.printQuantity = parseInt(card[prop])
+      } else if (card[prop] === "") {
+      } else {
+        parsedCard.properties.push({name: prop, fieldId: null, content: card[prop]})
+      }
+    }
+    console.log(parsedCard)
+  })
 
-
+}
 // { Title: 'Cats for Days',
 //     Quantity: '10',
 //     Health: '5',
