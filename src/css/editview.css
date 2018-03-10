@@ -8,6 +8,7 @@
 .edit-left-sidebar-container,
 .edit-right-sidebar-container {
   width: 20%;
+  background-color: #fff;
 }
 
 .edit-center-container {
