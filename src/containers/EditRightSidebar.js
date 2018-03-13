@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 
 import CardQuantity from '../components/sidebars/CardQuantity'
-import FieldProperty from '../components/sidebars/FieldProperty'
+import CardType from '../components/sidebars/CardType'
 import FieldContent from '../components/sidebars/FieldContent'
 import SymbolList from '../components/sidebars/SymbolList'
 
@@ -12,7 +12,7 @@ const EditRightSidebar = () => {
   return (
     <div className="edit-right-sidebar-container">
       <CardQuantity />
-      <FieldProperty />
+      <CardType />
       <FieldContent />
       <div className="divider"></div>
       <SymbolList />

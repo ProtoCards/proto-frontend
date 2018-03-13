@@ -30,6 +30,10 @@ div, p {
   font-family: 'Karla', sans-serif;
 }
 
+input, select, p {
+  font-size: 0.9em;
+}
+
 h2 {
   font-size: 1.3em;
 }
