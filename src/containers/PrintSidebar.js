@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import FilterByTags from '../components/sidebars/FilterByTags'
 import PrintActions from '../components/sidebars/PrintActions'
 import CardList from '../components/sidebars/CardList'
 
@@ -17,7 +16,6 @@ const PrintSidebar = () => {
         </div>
       </Link>
 
-      <FilterByTags />
       <div className="divider"></div>
       <PrintActions />
       <div className="divider"></div>
