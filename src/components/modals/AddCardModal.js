@@ -52,18 +52,28 @@ class AddCardModal extends Component {
               <h3>Title</h3>
               <input type="text" name="cardTitle" id="card-title" className="modal-input"></input>
             </div>
-            <div className="checkbox-option mtb-05">
+            {/* <div className="checkbox-option mtb-05">
               <i className="material-icons small-icon mr-05">check_box</i>
               <span>Display Title on card</span>
-            </div>
+            </div> */}
           </div>
 
           <div className="mtb-2">
-            <h3>Quantity</h3>
+            <h3>Type</h3>
+            <select id="card-quantity" className="modal-input">
+              <option value="SomeType">Some Type</option>
+              <option value="SomeOtherType">Some Other Type</option>
+              <option value="CustomType">Create New Type</option>
+            </select>
+          </div>
+
+
+          <div className="mtb-2">
+            <h3>Print Quantity</h3>
             <input type="text" name="cardQuantity" id="card-quantity" className="modal-input"></input>
           </div>
 
-          <button onClick={ this.addCard } className="green">Add New Card</button>
+          <button onClick={ this.addCard }>Add New Card</button>
 
         </div>
 
