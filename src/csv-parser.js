@@ -10,12 +10,12 @@ const read = (filename) => {
   })
 }
 
+const baseURL = 'http://localhost:3001/graphql'
+
 const importFile = async (filename) => {
   let csvString = await read(filename)
   let csvArray = parse(csvString)
   let column_names = csvArray.shift()
-  console.log(column_names)
-  console.info(csvArray)
   // update column names if needed so there's a Title and Type
   const objects = []
   csvArray.forEach((line) => {
@@ -25,8 +25,8 @@ const importFile = async (filename) => {
     }
     objects.push(obj)
   })
-  console.log(objects)
-  console.log(cardify(objects))
+  const parsedCards = cardify(objects)
+  // postToDB(parsedCards)
 }
 
 importFile('./cards.csv')
@@ -70,3 +70,34 @@ const cardify = (data) => {
   })
   return cards
 }
+
+// const postToDB = (cards) => {
+//
+//   const mutation = `mutation cards($input:[CardInput]){
+//     createCards(input:$input){
+//       _id
+//       projectId
+//       printQuantity
+//       cardType
+//       workingTitle
+//       properties{
+//         name
+//         fieldId
+//         content
+//       }
+//     }
+//   }`
+//
+//   return async () => {
+//     const data = await fetch(`${baseURL}`, {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//           query: mutation,
+//           variables: { input: cards }
+//       })
+//     })
+//     .then(res => console.log(res.json()))
+// }
