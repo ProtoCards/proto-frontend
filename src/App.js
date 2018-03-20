@@ -15,6 +15,7 @@ import PrintSidebar from './containers/PrintSidebar'
 import NewProjectScreen from './containers/NewProjectScreen';
 import AssignFields from './components/newproject/AssignFields';
 import Print from './containers/Print.js'
+import SignUp from './components/auth/SignUp'
 
 
 const App = () => (
@@ -64,6 +65,10 @@ const App = () => (
 
       <Route exact path='/print' component={ props =>
         <Print />
+      }/>
+
+      <Route exact path='/signup' component={ props =>
+        <SignUp />
       }/>
 
     </div>
