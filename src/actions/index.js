@@ -34,7 +34,7 @@ export function addProjectCard(newCard){
     createCard(input:$input){
       _id
       projectId
-      quantity
+      printQuantity
       properties{
         name
         fieldId

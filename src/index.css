@@ -18,6 +18,12 @@ html, body, #root,
   height: 100%;
 }
 
+.right-title {
+  text-align: right;
+  padding: 0.5em 1em 0em 0em;
+  font-weight: bold;
+}
+
 p, h1, h2, h3, h4, a {
   margin: 0em;
 }

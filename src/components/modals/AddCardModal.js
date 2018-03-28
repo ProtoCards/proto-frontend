@@ -20,7 +20,7 @@ class AddCardModal extends Component {
     // temporary hard code for development
     let newCard = {
       "projectId": "5a861f6ef36d2873fccf8312",
-      "quantity": newCardQuantity,
+      "printQuantity": newCardQuantity,
       "properties": [
         {
           "name": "Title",
@@ -29,7 +29,7 @@ class AddCardModal extends Component {
         }
       ]
     }
-
+    console.log(newCard, "newCard");
     this.props.addProjectCard(newCard)
     this.closeModal()
   }
@@ -60,7 +60,7 @@ class AddCardModal extends Component {
 
           <div className="mtb-2">
             <h3>Type</h3>
-            <select id="card-quantity" className="modal-input">
+            <select className="modal-input">
               <option value="SomeType">Some Type</option>
               <option value="SomeOtherType">Some Other Type</option>
               <option value="CustomType">Create New Type</option>
