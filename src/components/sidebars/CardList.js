@@ -4,6 +4,7 @@ import CardListItem from './CardListItem'
 
 const CardList = ({ projectCards }) => {
 // see ACTIONS > getProjectCards
+console.log("projectCards from CardList", projectCards);
   return (
     <div>
       {/* <div>
@@ -11,15 +12,12 @@ const CardList = ({ projectCards }) => {
       </div> */}
       <div className="mtb-1 card-list">
         { projectCards.all.map((el, i) => {
-          //get title content
-          for(var j in el.properties){
-            if(el.properties[j].name === 'Title'){
-              return <CardListItem name={el.properties[j].content}
-              selected={el.is_selected}
-              key={i}
-              dataid={el._id} />
-            }
-          }
+          return <CardListItem name={el.workingTitle ? el.workingTitle : 'untitled'}
+          cardType={el.cardType}
+          printQuantity={el.printQuantity}
+          selected={el.is_selected}
+          key={i}
+          dataid={el._id} />
         })}
       </div>
     </div>

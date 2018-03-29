@@ -13,7 +13,9 @@ export function deleteCards(selectedCards){
   //   deleteCard(_id:$_id){
   //     _id
   //     projectId
-  //     quantity
+  //     workingTitle
+  //     cardType
+  //     printQuantity
   //     properties{
   //       name
   //       fieldId
@@ -34,6 +36,8 @@ export function addProjectCard(newCard){
     createCard(input:$input){
       _id
       projectId
+      workingTitle
+      cardType
       printQuantity
       properties{
         name
@@ -91,6 +95,9 @@ export function getProjectCards(){
   getProjectCards(projectId:$projectId){
     _id
     projectId
+    workingTitle
+    cardType
+    printQuantity
     properties{
       name
       fieldId

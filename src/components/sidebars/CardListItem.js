@@ -22,7 +22,6 @@ const CardListItem = ({ name, selected, dataid, projectCards, selectCard }) => {
     }
 
     console.log("clickedCard", clickedCard[0])
-    console.log("projectCards.all", projectCards.all);
 
     //send to ACTIONS
     // * right now this is sending the WHOLE card...
