@@ -1,5 +1,6 @@
 import React from 'react'
 import { auth } from '../../firebase';
+import SignOutButton from '../auth/SignOut'
 
 const NavBar = () => {
 
@@ -16,7 +17,7 @@ const NavBar = () => {
           <h2 className="project-name">PROJECT NAME</h2>
           <i className="project-drop-down material-icons">arrow_drop_down</i>
         </div>
-        <span className="account" onClick={auth.doSignOut}>Logout</span>
+        <SignOutButton />
         <i className="account material-icons">account_box</i>
       </nav>
 
