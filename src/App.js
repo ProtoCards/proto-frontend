@@ -16,6 +16,7 @@ import NewProjectScreen from './containers/NewProjectScreen';
 import AssignFields from './components/newproject/AssignFields';
 import Print from './containers/Print.js'
 import SignUp from './components/auth/SignUp'
+import SignIn from './components/auth/SignIn'
 
 
 const App = () => (
@@ -24,21 +25,21 @@ const App = () => (
     <div className="height100">
 
       <Route exact path='/' component={ props =>
-        <div className="route-wrapper">
+          <div className="route-wrapper">
 
-          <DeleteCardsModal />
-          <AddCardModal />
-          <NavBar />
-          <div className="edit-cards-view-container">
-            <EditLeftSidebar />
-            <div className="edit-center-container">
-              <EditCenterMain />
-              <EditCenterCarousel />
+            <DeleteCardsModal />
+            <AddCardModal />
+            <NavBar />
+            <div className="edit-cards-view-container">
+              <EditLeftSidebar />
+              <div className="edit-center-container">
+                <EditCenterMain />
+                <EditCenterCarousel />
+              </div>
+              <EditRightSidebar />
             </div>
-            <EditRightSidebar />
-          </div>
 
-        </div>
+          </div>
       }/>
 
       <Route exact path='/print-prep' component={ props =>
@@ -69,6 +70,10 @@ const App = () => (
 
       <Route exact path='/signup' component={ props =>
         <SignUp />
+      }/>
+
+      <Route exact path='/signin' component={ props =>
+        <SignIn />
       }/>
 
     </div>

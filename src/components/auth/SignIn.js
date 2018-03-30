@@ -3,8 +3,7 @@ import { auth } from '../../firebase';
 
 const INITIAL_STATE = {
   email: '',
-  passwordOne: '',
-  passwordTwo: '',
+  password: '',
   error: null,
 };
 
@@ -12,23 +11,21 @@ const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
 
-class SignUp extends Component {
+class SignIn extends Component {
 
   state = { ...INITIAL_STATE }
   closeModal = () => {
-    const modalSignup = document.querySelector('.modal-signup')
-    modalSignup.classList.add('hide')
+    const modalSignin = document.querySelector('.modal-signin')
+    modalSignin.classList.add('hide')
   }
 
 
   onSubmit = (event) => {
-    console.log('submitted')
     const {
       email,
-      passwordOne,
+      password,
     } = this.state;
-
-    auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+    auth.doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
         console.log(authUser)
@@ -41,25 +38,23 @@ class SignUp extends Component {
   render () {
     const {
       email,
-      passwordOne,
-      passwordTwo,
+      password,
       error,
     } = this.state;
 
     const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === '' ||
+      password === '' ||
       email === ''
 
     return (
-      <div className="modal-wrapper modal-signup">
+      <div className="modal-wrapper modal-signin">
 
         <div className="dark-overlay" onClick={ this.closeModal }>
         </div>
 
         <div className="modal">
           <div className="modal-close">
-            <span>SignUp</span>
+            <span>Sign In</span>
             <i className="material-icons close-icon" onClick={ this.closeModal }>close</i>
           </div>
 
@@ -72,15 +67,10 @@ class SignUp extends Component {
 
           <div className="mtb-2">
             <h3>Password</h3>
-            <input value={passwordOne} onChange={event => this.setState(byPropKey('passwordOne', event.target.value))} type="password" name="passwordOne" id="passwordOne" className="modal-input"></input>
+            <input value={password} onChange={event => this.setState(byPropKey('password', event.target.value))} type="password" name="password" id="password" className="modal-input"></input>
           </div>
 
-          <div className="mtb-2">
-            <h3>Confirm Password</h3>
-            <input value={passwordTwo} onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))} type="password" name="passwordOne" id="passwordwo" className="modal-input"></input>
-          </div>
-
-          <button disabled={isInvalid} onClick={this.onSubmit}>Create Your Account</button>
+          <button disabled={isInvalid} onClick={this.onSubmit}>Login</button>
 
           { error && <p>{error.message}</p> }
         </div>
@@ -90,4 +80,4 @@ class SignUp extends Component {
     )
   }
 }
-export default SignUp;
+export default SignIn;
