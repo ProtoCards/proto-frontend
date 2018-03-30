@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux'
+import { signIn } from '../../actions'
+import { connect } from 'react-redux'
 import { auth } from '../../firebase';
 
 const INITIAL_STATE = {
@@ -22,16 +25,13 @@ class SignUp extends Component {
 
 
   onSubmit = (event) => {
-    console.log('submitted')
-    const {
-      email,
-      passwordOne,
-    } = this.state;
+    let email = document.querySelector('#email').value
+    let password = document.querySelector('#passwordOne').value
 
-    auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+    auth.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
-        console.log(authUser)
+        this.props.signIn(authUser.uid)
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
@@ -90,4 +90,14 @@ class SignUp extends Component {
     )
   }
 }
-export default SignUp;
+
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ signIn }, dispatch)
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp)
