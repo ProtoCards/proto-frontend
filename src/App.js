@@ -25,6 +25,7 @@ const App = () => (
     <div className="height100">
 
       <Route exact path='/' component={ props =>
+
           <div className="route-wrapper">
 
             <DeleteCardsModal />
@@ -73,7 +74,10 @@ const App = () => (
       }/>
 
       <Route exact path='/signin' component={ props =>
+        <div>
+        <NavBar />
         <SignIn />
+        </div>
       }/>
 
     </div>
