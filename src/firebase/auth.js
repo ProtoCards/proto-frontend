@@ -10,11 +10,6 @@ export const doSignInWithEmailAndPassword = (email, password) =>
 export const doSignOut = () =>
   auth.signOut()
 
-let currentUser
-
-auth.onAuthStateChanged(function(user) {
-  currentUser = user
-});
-console.log("current user:", currentUser)
-
-export {currentUser}
+export const getUser =  auth.onAuthStateChanged(function(user) {
+    return user
+  });

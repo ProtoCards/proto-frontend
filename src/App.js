@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css'
-
+import {auth} from './firebase'
 import NavBar from './components/shared/NavBar'
 import EditLeftSidebar from './containers/EditLeftSidebar'
 import EditRightSidebar from './containers/EditRightSidebar'
@@ -18,6 +18,7 @@ import Print from './containers/Print.js'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 
+console.log(currentUser)
 
 const App = () => (
 
@@ -75,8 +76,8 @@ const App = () => (
 
       <Route exact path='/signin' component={ props =>
         <div>
-        <NavBar />
-        <SignIn />
+          <NavBar />
+          <SignIn />
         </div>
       }/>
 

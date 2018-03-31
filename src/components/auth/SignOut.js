@@ -8,6 +8,7 @@ import { auth } from '../../firebase';
 class SignOut extends Component {
 
   onSubmit = (event) => {
+    event.preventDefault()
     auth.doSignOut()
       .then((stuff) => {
         this.props.signOut()
@@ -16,7 +17,7 @@ class SignOut extends Component {
 
   render () {
     return (
-      <span className="account" onClick={this.onSubmit}>Logout</span>
+      <button className="account" onClick={this.onSubmit}>Logout</button>
 
     )
   }
