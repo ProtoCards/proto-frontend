@@ -18,7 +18,6 @@ import Print from './containers/Print.js'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 
-console.log(currentUser)
 
 const App = () => (
 
