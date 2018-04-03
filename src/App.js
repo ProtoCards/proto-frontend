@@ -19,23 +19,20 @@ import Print from './containers/Print.js'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import { signIn } from './actions'
-
-
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={(props) => (
-//     // if (uid === null) {
-//     //   console.log(auth.getUser())
-//     // } else {
-//     //   <Component {...props} />
-//     // }
-//     console.log(this.props.uid)
-//     // ? <Component {...props} />
-//     // : <Redirect to={{
-//     //     pathname: '/login',
-//     //     state: { from: props.location }
-//     //   }} />
-//   )} />
-// )
+// import PrivateRoute from './components/shared/PrivateRoute'
+const PrivateRoute = ({ component: Component, ...rest}) => (
+  <Route {...rest} render={(props) => (
+    {...rest}.uid ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/signin",
+          }}
+        />
+      )
+  )} />
+)
 
 class App extends Component {
   componentDidMount() {
@@ -106,10 +103,10 @@ class App extends Component {
           </div>
         }/>
 
-      {  // <PrivateRoute exact path='/protected' component={props =>
-        //   <AddCardModal />
-        // }/>
-      }
+      <PrivateRoute exact path='/protected' uid={this.props.uid} component={props =>
+          <AddCardModal />
+        }/>
+
 
       </div>
 
