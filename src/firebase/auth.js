@@ -10,6 +10,10 @@ export const doSignInWithEmailAndPassword = (email, password) =>
 export const doSignOut = () =>
   auth.signOut()
 
-export const getUser =  auth.onAuthStateChanged(function(user) {
-    return user
+export const getUser =  () => {
+  return new Promise(function (resolve, reject) {
+    auth.onAuthStateChanged(function (user) {
+      resolve(user);
+    });
   });
+}
