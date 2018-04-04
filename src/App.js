@@ -18,39 +18,44 @@ import AssignFields from './components/newproject/AssignFields';
 import Print from './containers/Print.js'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
+import AuthContainer from './containers/AuthContainer'
 import { signIn } from './actions'
 // import PrivateRoute from './components/shared/PrivateRoute'
 
-async function getUid(uid, signIn) {
-  console.log(uid)
-  if (!uid) {
-    let user = await auth.getUser()
-    if (!user) {
-      console.log('no user')
-      return null
-    } else {
-      console.log(user)
-      signIn(user.uid)
-      return user.uid
-    }
-  } else {
-    return uid
-  }
-}
-
-const PrivateRoute = ({ component: Component, ...rest}) => (
-  <Route {...rest} render={(props) => (
-    getUid({...rest}.uid, {...rest}.signIn) ? (
-        <Component {...props} {...rest}/>
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/signin",
-          }}
-        />
-      )
-  )} />
-)
+// async function getUid(uid, signIn) {
+//   console.log(uid)
+//   if (!uid) {
+//     let user = await auth.getUser()
+//     if (!user) {
+//       console.log('no user')
+//       return new Promise(function(resolve, reject) {
+//         resolve(null)
+//       })
+//     } else {
+//       console.log(user)
+//       signIn(user.uid)
+//       return user.uid
+//     }
+//   } else {
+//     return uid
+//   }
+// }
+//
+// const PrivateRoute = async ({ component: Component, ...rest}) => (
+//   <Route {...rest} render={(props) => (
+//
+//      await getUid({...rest}.uid, {...rest}.signIn) !== null ? (
+//         console.log("has uid"),
+//         <Component {...props} {...rest}/>
+//       ) : (
+//         <Redirect
+//           to={{
+//             pathname: "/signin",
+//           }}
+//         />
+//       )
+//   )} />
+// )
 
 class App extends Component {
 
@@ -59,7 +64,7 @@ class App extends Component {
       <Router>
       <div className="height100">
 
-        <PrivateRoute exact path='/' uid={this.props.uid} signIn={this.props.signIn} component={ props =>
+        <Route exact path='/' component={ props =>
             <div className="route-wrapper">
 
               <DeleteCardsModal />
@@ -100,7 +105,9 @@ class App extends Component {
         }/>
 
         <Route exact path='/print' component={ props =>
-          <Print />
+          <AuthContainer>
+            <Print />
+          </AuthContainer>
         }/>
 
         <Route exact path='/signup' component={ props =>
@@ -114,9 +121,10 @@ class App extends Component {
           </div>
         }/>
 
-      <PrivateRoute exact path='/protected' uid={this.props.uid} signIn={this.props.signIn} component={props =>
-          <NavBar />
-        }/>
+      {// <PrivateRoute exact path='/protected' uid={this.props.uid} signIn={this.props.signIn} component={props =>
+      //     <NavBar />
+      //   }/>
+    }
 
 
       </div>
