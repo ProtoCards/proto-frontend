@@ -20,10 +20,23 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import { signIn } from './actions'
 // import PrivateRoute from './components/shared/PrivateRoute'
+
+async function getUid(uid, signIn) {
+  if (!uid) {
+    let user = await auth.getUser()
+    if (!user) {
+      return null
+    } else {
+      return user.uid
+    }
+  }
+  return null
+}
+
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
-    {...rest}.uid ? (
-        <Component {...props} />
+    getUid({...rest}.uid, {...rest}.signIn) ? (
+        <Component {...props} {...rest}/>
       ) : (
         <Redirect
           to={{
@@ -103,7 +116,7 @@ class App extends Component {
           </div>
         }/>
 
-      <PrivateRoute exact path='/protected' uid={this.props.uid} component={props =>
+      <PrivateRoute exact path='/protected' uid={this.props.uid} signIn={this.props.signIn} component={props =>
           <AddCardModal />
         }/>
 
