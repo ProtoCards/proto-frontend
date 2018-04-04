@@ -22,15 +22,20 @@ import { signIn } from './actions'
 // import PrivateRoute from './components/shared/PrivateRoute'
 
 async function getUid(uid, signIn) {
+  console.log(uid)
   if (!uid) {
     let user = await auth.getUser()
     if (!user) {
+      console.log('no user')
       return null
     } else {
+      console.log(user)
+      signIn(user.uid)
       return user.uid
     }
+  } else {
+    return uid
   }
-  return null
 }
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
@@ -48,20 +53,13 @@ const PrivateRoute = ({ component: Component, ...rest}) => (
 )
 
 class App extends Component {
-  componentDidMount() {
-    auth.getUser().then(user => {
-      if (user) {
-        this.props.signIn(user.uid)
-      }
-    })
-  }
 
   render() {
     return(
       <Router>
       <div className="height100">
 
-        <Route exact path='/' component={ props =>
+        <PrivateRoute exact path='/' uid={this.props.uid} signIn={this.props.signIn} component={ props =>
             <div className="route-wrapper">
 
               <DeleteCardsModal />
@@ -117,7 +115,7 @@ class App extends Component {
         }/>
 
       <PrivateRoute exact path='/protected' uid={this.props.uid} signIn={this.props.signIn} component={props =>
-          <AddCardModal />
+          <NavBar />
         }/>
 
 
