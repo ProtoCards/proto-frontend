@@ -20,11 +20,6 @@ class SignIn extends Component {
     router: PropTypes.object
   }
 
-  closeModal = () => {
-    const modalSignin = document.querySelector('.modal-signin')
-    modalSignin.classList.add('hide')
-  }
-
   onSubmit = (event) => {
     let email = document.querySelector('#email').value
     let password = document.querySelector('#password').value
@@ -33,6 +28,7 @@ class SignIn extends Component {
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
         localStorage.setItem('uid', authUser.uid)
+        localStorage.setItem('token', authUser.refreshToken)
         let redirectPath
         if (this.context.router.route.location.state) {
           redirectPath = this.context.router.route.location.state.referrer.pathname
@@ -60,13 +56,12 @@ class SignIn extends Component {
     return (
       <div className="modal-wrapper modal-signin">
 
-        <div className="dark-overlay" onClick={ this.closeModal }>
+        <div className="dark-overlay">
         </div>
 
         <div className="modal">
           <div className="modal-close">
             <span>Sign In</span>
-            <i className="material-icons close-icon" onClick={ this.closeModal }>close</i>
           </div>
 
           <div className="mtb-2">

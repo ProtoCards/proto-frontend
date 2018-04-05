@@ -20,7 +20,7 @@ import SignIn from './components/auth/SignIn'
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
-     localStorage.getItem('uid') ? (
+     localStorage.getItem('token') ? (
         <Component {...props} {...rest}/>
       ) : (
         <Redirect
@@ -103,7 +103,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({})
 
-const mapDispatchToProps = dispatch => {}
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(
   mapStateToProps,

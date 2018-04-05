@@ -21,12 +21,6 @@ class SignUp extends Component {
     router: PropTypes.object
   }
 
-  closeModal = () => {
-    const modalSignup = document.querySelector('.modal-signup')
-    modalSignup.classList.add('hide')
-  }
-
-
   onSubmit = (event) => {
     let email = document.querySelector('#email').value
     let password = document.querySelector('#passwordOne').value
@@ -35,6 +29,7 @@ class SignUp extends Component {
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
         localStorage.setItem('uid', authUser.uid)
+        localStorage.setItem('token', authUser.refreshToken)
         this.context.router.history.push('/')
       })
       .catch(error => {
@@ -58,13 +53,12 @@ class SignUp extends Component {
     return (
       <div className="modal-wrapper modal-signup">
 
-        <div className="dark-overlay" onClick={ this.closeModal }>
+        <div className="dark-overlay">
         </div>
 
         <div className="modal">
           <div className="modal-close">
-            <span>SignUp</span>
-            <i className="material-icons close-icon" onClick={ this.closeModal }>close</i>
+            <span>Sign Up</span>
           </div>
 
           <div className="mtb-2">

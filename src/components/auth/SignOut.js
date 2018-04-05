@@ -13,6 +13,7 @@ class SignOut extends Component {
     auth.doSignOut()
       .then((stuff) => {
         localStorage.removeItem('uid')
+        localStorage.removeItem('token')
         this.context.router.history.push('/signin')
       })
   }
