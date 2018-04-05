@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './App.css'
-import {auth} from './firebase'
 import NavBar from './components/shared/NavBar'
 import EditLeftSidebar from './containers/EditLeftSidebar'
 import EditRightSidebar from './containers/EditRightSidebar'
@@ -18,36 +17,17 @@ import AssignFields from './components/newproject/AssignFields';
 import Print from './containers/Print.js'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
-// import AuthContainer from './containers/AuthContainer'
 import { signIn } from './actions'
 
-// async function getUid(uid, signIn) {
-//   console.log(uid)
-//   if (!uid) {
-//     let user = await auth.getUser()
-//     if (!user) {
-//       console.log('no user')
-//       return new Promise(function(resolve, reject) {
-//         resolve(null)
-//       })
-//     } else {
-//       console.log(user)
-//       signIn(user.uid)
-//       return user.uid
-//     }
-//   } else {
-//     return uid
-//   }
-// }
-//
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
      localStorage.getItem('uid') ? (
         <Component {...props} {...rest}/>
       ) : (
         <Redirect
-          to={{
+          push to={{
             pathname: "/signin",
+            state: {referrer: props.location}
           }}
         />
       )

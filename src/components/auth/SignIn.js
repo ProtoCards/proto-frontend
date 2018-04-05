@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux'
-import { signIn } from '../../actions'
-import { connect } from 'react-redux'
-import { auth } from '../../firebase';
 import PropTypes from 'prop-types'
+import { signIn } from '../../actions'
+import { auth } from '../../firebase';
+
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -34,9 +33,14 @@ class SignIn extends Component {
     auth.doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
-        this.props.signIn(authUser.uid)
         localStorage.setItem('uid', authUser.uid)
-        this.context.router.history.push('/')
+        let redirectPath
+        if (this.context.router.route.location.state) {
+          redirectPath = this.context.router.route.location.state.referrer.pathname
+        } else {
+          redirectPath = '/'
+        }
+        this.context.router.history.push(redirectPath)
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
@@ -89,13 +93,6 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = state => ({})
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ signIn }, dispatch)
-}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignIn)
+export default SignIn

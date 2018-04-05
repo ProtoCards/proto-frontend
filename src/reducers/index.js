@@ -67,5 +67,6 @@ function projectCards(state = { all: [] }, action) {
 
 export default combineReducers({
   projectCards,
-  auth
+  auth,
+  routerLocations
 })
