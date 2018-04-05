@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { signIn } from '../../actions'
 import { connect } from 'react-redux'
 import { auth } from '../../firebase';
-
+import PropTypes from 'prop-types'
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -17,11 +17,15 @@ const byPropKey = (propertyName, value) => () => ({
 class SignIn extends Component {
 
   state = { ...INITIAL_STATE }
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
   closeModal = () => {
     const modalSignin = document.querySelector('.modal-signin')
     modalSignin.classList.add('hide')
   }
-
 
   onSubmit = (event) => {
     let email = document.querySelector('#email').value
@@ -31,6 +35,7 @@ class SignIn extends Component {
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
         this.props.signIn(authUser.uid)
+        this.context.router.history.push('/')
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
