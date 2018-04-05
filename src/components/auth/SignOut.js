@@ -22,10 +22,13 @@ class SignOut extends Component {
   }
 
   render () {
-    return (
-      <button className="account" onClick={this.onSubmit}>Logout</button>
-
-    )
+    if (localStorage.getItem('uid')) {
+      return (
+        <button className="account" onClick={this.onSubmit}>Logout</button>
+      )
+    } else {
+      return(null)
+    }
   }
 }
 
