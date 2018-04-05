@@ -79,7 +79,7 @@ class App extends Component {
             </div>
         }/>
 
-        <Route exact path='/print-prep' component={ props =>
+        <PrivateRoute exact path='/print-prep' component={ props =>
           <div className="print-route">
             <NavBar />
             <div className="print-preview-container">
@@ -101,7 +101,7 @@ class App extends Component {
           </div>
         }/>
 
-        <Route exact path='/print' component={ props =>
+        <PrivateRoute exact path='/print' component={ props =>
           <Print />
         }/>
 
@@ -115,12 +115,6 @@ class App extends Component {
             <SignIn />
           </div>
         }/>
-
-      {// <PrivateRoute exact path='/protected' uid={this.props.uid} signIn={this.props.signIn} component={props =>
-      //     <NavBar />
-      //   }/>
-    }
-
 
       </div>
 
