@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { signIn } from '../../actions'
 import { auth } from '../../firebase';
 
 const INITIAL_STATE = {
@@ -92,7 +91,5 @@ class SignIn extends Component {
     )
   }
 }
-
-
 
 export default SignIn

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux'
-import { signIn } from '../../actions'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { auth } from '../../firebase';
 
 const INITIAL_STATE = {
@@ -18,6 +16,11 @@ const byPropKey = (propertyName, value) => () => ({
 class SignUp extends Component {
 
   state = { ...INITIAL_STATE }
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
   closeModal = () => {
     const modalSignup = document.querySelector('.modal-signup')
     modalSignup.classList.add('hide')
@@ -31,7 +34,8 @@ class SignUp extends Component {
     auth.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
-        this.props.signIn(authUser.uid)
+        localStorage.setItem('uid', authUser.uid)
+        this.context.router.history.push('/')
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
@@ -91,13 +95,5 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = state => ({})
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ signIn }, dispatch)
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUp)
+export default SignUp

@@ -4,8 +4,6 @@ export const SELECT_PROJECT_CARD = 'SELECT_PROJECT_CARD'
 export const SELECT_ALL_CARDS = 'SELECT_ALL_CARDS'
 export const UNSELECT_ALL_CARDS = 'UNSELECT_ALL_CARDS'
 export const DELETE_CARDS = 'DELETE_CARDS'
-export const SIGN_IN = 'SIGN_IN'
-export const SIGN_OUT = 'SIGN_OUT'
 
 const baseURL = 'http://localhost:3001/graphql'
 
@@ -124,18 +122,4 @@ export function getProjectCards(){
     })
   }
 
-}
-
-export function signIn(uid) {
-  return {
-    type: SIGN_IN,
-    payload: uid
-  }
-}
-
-export function signOut() {
-  return {
-    type: SIGN_OUT,
-    payload: null
-  }
 }

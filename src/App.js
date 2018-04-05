@@ -17,7 +17,6 @@ import AssignFields from './components/newproject/AssignFields';
 import Print from './containers/Print.js'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
-import { signIn } from './actions'
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
@@ -102,13 +101,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  uid: state.auth.uid
-})
+const mapStateToProps = state => ({})
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ signIn }, dispatch)
-}
+const mapDispatchToProps = dispatch => {}
 
 export default connect(
   mapStateToProps,

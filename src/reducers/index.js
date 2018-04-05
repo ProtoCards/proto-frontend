@@ -1,22 +1,6 @@
 import { combineReducers } from 'redux'
-import { GET_PROJECT_CARDS, ADD_PROJECT_CARD, SELECT_PROJECT_CARD, SELECT_ALL_CARDS, UNSELECT_ALL_CARDS, DELETE_CARDS, SIGN_IN, SIGN_OUT } from '../actions'
+import { GET_PROJECT_CARDS, ADD_PROJECT_CARD, SELECT_PROJECT_CARD, SELECT_ALL_CARDS, UNSELECT_ALL_CARDS, DELETE_CARDS } from '../actions'
 
-function auth(state = {uid: null}, action) {
-  switch (action.type) {
-    case SIGN_IN:
-      return {
-        ...state,
-        uid: action.payload
-      }
-    case SIGN_OUT:
-      return {
-        ...state,
-        uid: action.payload
-      }
-    default:
-      return state
-  }
-}
 function projectCards(state = { all: [] }, action) {
   switch (action.type) {
     case SELECT_ALL_CARDS:
@@ -66,6 +50,5 @@ function projectCards(state = { all: [] }, action) {
 }
 
 export default combineReducers({
-  projectCards,
-  auth
+  projectCards
 })
