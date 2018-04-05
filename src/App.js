@@ -42,7 +42,7 @@ import { signIn } from './actions'
 //
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
-     {...rest}.uid ? (
+     localStorage.getItem('uid') ? (
         <Component {...props} {...rest}/>
       ) : (
         <Redirect
@@ -61,7 +61,7 @@ class App extends Component {
       <Router>
       <div className="height100">
 
-        <PrivateRoute exact path='/' uid={this.props.uid} component={ props =>
+        <PrivateRoute exact path='/' component={ props =>
             <div className="route-wrapper">
 
               <DeleteCardsModal />

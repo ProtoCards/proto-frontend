@@ -35,6 +35,7 @@ class SignIn extends Component {
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
         this.props.signIn(authUser.uid)
+        localStorage.setItem('uid', authUser.uid)
         this.context.router.history.push('/')
       })
       .catch(error => {
