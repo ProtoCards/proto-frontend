@@ -13,7 +13,7 @@ const EditCenterCarousel = ({ projectCards }) => {
   return (
     <div className="carousel-container">
       { carouselCards.map(el => {
-        return <CarouselCard key={el._id} title={el.properties[0].content}/>
+        return <CarouselCard key={el._id} title={el.workingTitle}/>
       })}
     </div>
   )

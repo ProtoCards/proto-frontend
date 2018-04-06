@@ -15,21 +15,17 @@ class AddCardModal extends Component {
     e.preventDefault()
 
     let newCardTitle = document.querySelector('#card-title').value
+    let newCardType = document.querySelector('#card-type option:checked').value
     let newCardQuantity = parseInt(document.querySelector('#card-quantity').value, 10)
 
     // temporary hard code for development
     let newCard = {
       "projectId": "5a861f6ef36d2873fccf8312",
-      "quantity": newCardQuantity,
-      "properties": [
-        {
-          "name": "Title",
-          "fieldId": "A",
-          "content": newCardTitle
-        }
-      ]
+      "workingTitle": newCardTitle,
+      "cardType": newCardType,
+      "printQuantity": newCardQuantity ? newCardQuantity : 1
     }
-
+    console.log(newCard, "newCard");
     this.props.addProjectCard(newCard)
     this.closeModal()
   }
@@ -60,7 +56,7 @@ class AddCardModal extends Component {
 
           <div className="mtb-2">
             <h3>Type</h3>
-            <select id="card-quantity" className="modal-input">
+            <select className="modal-input" id="card-type">
               <option value="SomeType">Some Type</option>
               <option value="SomeOtherType">Some Other Type</option>
               <option value="CustomType">Create New Type</option>
