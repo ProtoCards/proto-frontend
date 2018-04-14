@@ -1,4 +1,5 @@
 import React from 'react'
+import SignOutButton from '../auth/SignOut'
 
 const NavBar = () => {
 
@@ -7,7 +8,6 @@ const NavBar = () => {
 
     projectDropDown.classList.contains('hide') ? projectDropDown.classList.remove('hide') : projectDropDown.classList.add('hide')
   }
-
   return (
     <div>
       <nav>
@@ -16,6 +16,7 @@ const NavBar = () => {
           <h2 className="project-name">PROJECT NAME</h2>
           <i className="project-drop-down material-icons">arrow_drop_down</i>
         </div>
+        <SignOutButton />
         <i className="account material-icons">account_box</i>
       </nav>
 
