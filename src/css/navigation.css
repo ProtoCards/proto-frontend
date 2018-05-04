@@ -48,6 +48,14 @@ nav {
   cursor: pointer;
 }
 
+.account-dropdown {
+  position: absolute;
+  right: 0px;
+  padding: 1em;
+  background-color: #fff;
+  box-shadow: -7px 10px 19px 0px rgba(0,0,0,0.3);
+}
+
 #uploadCSV, #downloadCSV {
   transition: 0.25s;
 }
@@ -58,4 +66,8 @@ nav {
 
 .hide {
   display: none;
+}
+
+#user-account {
+  cursor: pointer;
 }
